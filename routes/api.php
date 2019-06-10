@@ -18,7 +18,7 @@
 // });
 
 
-Route::post('/register', 'AuthController@register');
-Route::post('/login', 'AuthController@login');
-Route::get('/user', 'AuthController@user');
+Route::post('/register', 'AuthController@register')->middleware('localization');
+Route::post('/login', 'AuthController@login')->middleware('localization');
+Route::get('/user', 'AuthController@user')->middleware('localization');
 Route::post('/logout', 'AuthController@logout');

@@ -1,21 +1,22 @@
 <?php
-
 namespace App\Http\Middleware;
-
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
-
-class Authenticate extends Middleware
+use Closure;
+class localization
 {
-    /**
-     * Get the path the user should be redirected to when they are not authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return string
-     */
-    protected function redirectTo($request)
-    {
-        if (! $request->expectsJson()) {
-            return route('login');
-        }
-    }
+  /**
+  * Handle an incoming request.
+  *
+  * @param \Illuminate\Http\Request $request
+  * @param \Closure $next
+  * @return mixed
+  */
+  public function handle($request, Closure $next)
+  {
+     // Check header request and determine localizaton
+     $local = ($request->hasHeader('localization')) ? $request->header('localization') : 'en';
+     // set laravel localization
+     app()->setLocale($local);
+    // continue request
+    return $next($request);
+  }
 }
