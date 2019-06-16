@@ -13,7 +13,7 @@ class localization
   public function handle($request, Closure $next)
   {
      // Check header request and determine localizaton
-     $local = ($request->hasHeader(‘X-localization’)) ? $request->header(‘X-localization’) : ‘en’;
+     $local = ($request->hasHeader('localization')) ? $request->header('localization') : 'en';
      // set laravel localization
      app()->setLocale($local);
     // continue request
