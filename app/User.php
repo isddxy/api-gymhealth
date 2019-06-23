@@ -52,4 +52,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function ownsWorkout(Workout $workout) {
+        return $this->id === $workout->user->id;
+    }
 }
